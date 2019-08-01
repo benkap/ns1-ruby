@@ -11,7 +11,7 @@ Based on and Forked from [kitop/ns1-ruby](https://github.com/kitop/ns1-ruby)
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'ns1'
+gem 'ns-1'
 ```
 
 And then execute:
@@ -20,7 +20,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install ns1
+    $ gem install ns-1
 
 ## Usage
 
