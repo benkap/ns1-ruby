@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "nsone/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "nsone"
+  spec.name          = "ns-1"
   spec.version       = NSOne::VERSION
   spec.authors       = ["Esteban Pastorino"]
   spec.email         = ["ejpastorino@gmail.com"]
@@ -13,9 +13,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{Based on kitop ns1 gem}
   spec.homepage      = "https://github.com/benkap/ns1-ruby"
 
-  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
-    f.match(%r{^(test|spec|features|tmp)/})
-  end
+  spec.files         = `find . -type f`.split("\n").reject { |f| f[/test|spec\/|features|tmp|\.git\/|doc|\.yardopts|^.$|vscode|\.gem$/]}.each {|f| f.slice!(/^.\//)}
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
