@@ -67,6 +67,53 @@ module NS1
       end
 
       #
+      # Returns statistics and graphs on `NS1 Network` level (Managed/Dedicated)
+      #
+      # @param [Hash] params will be used as the request body
+      #
+      # @option params [String] :period one of `1h`, `24h`, or `30d`
+      #
+      #   Default: 24h
+      #
+      # @option params [Boolean] :expand if `true` breaks down stats by zone.
+      #
+      #   Default: `false`
+      #
+      # @option params [Boolean] :aggregate if `true` returns aggregated stats across all zones and billing tiers
+      #
+      #   Default: `false`
+      #
+      # @return [NS1::Response]
+      #
+      def network_usage(params = {})
+        perform_request(HTTP_GET, "/v1/stats/network/usage", params)
+      end
+
+      #
+      # Returns total usage (Queries) during `:period` per region/Geo-Location. At the moment NS1 API return the following areas:
+      # Europe, North America, Oceania, Africa, Asia
+      #
+      # @param [Hash] params will be used as the request body
+      #
+      # @option params [String] :period one of `1h`, `24h`, or `30d`
+      #
+      #   Default: 24h
+      #
+      # @option params [Boolean] :expand if `true` breaks down stats by zone.
+      #
+      #   Default: `false`
+      #
+      # @option params [Boolean] :aggregate if `true` returns aggregated stats across all zones and billing tiers
+      #
+      #   Default: `false`
+      #
+      # @return [NS1::Response]
+      #
+      def region_usage(params = {})
+        perform_request(HTTP_GET, "/v1/stats/region/usage", params)
+      end
+
+      #
       # Returns statistics and graphs for a given zone over a given period
       #
       # @param [Hash] params will be used as the request body
