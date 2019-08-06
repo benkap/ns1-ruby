@@ -1,7 +1,7 @@
 module SpecHelpers
   module StubRequestHelpers
     def stub_api(method, path, opts = {})
-      url = URI.join(NS1::Client::BASE_URL, path)
+      url = URI.join(NSOne::Client::BASE_URL, path)
       response = opts[:response] || JSON.dump({})
       status = opts[:status] || 200
 

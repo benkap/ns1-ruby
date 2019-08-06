@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-module NS1
+module NSOne
   module API
     module Jobs
 
       #
       # Returns the list of all monitoring jobs for the account
       #
-      # @return [NS1::Response]
+      # @return [NSOne::Response]
       #
       def jobs()
         perform_request(HTTP_GET, "/v1/monitoring/jobs")
@@ -18,10 +18,10 @@ module NS1
       #
       # @param [String] job_id the job ID
       #
-      # @return [NS1::Response]
+      # @return [NSOne::Response]
       #
       def job(job_id)
-        raise NS1::MissingParameter, "job_id cannot be blank" if blank?(job_id)
+        raise NSOne::MissingParameter, "job_id cannot be blank" if blank?(job_id)
         perform_request(HTTP_GET, "/v1/monitoring/jobs/#{job_id}")
       end
 

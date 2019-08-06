@@ -1,6 +1,6 @@
 require 'delegate'
 
-module NS1
+module NSOne
   module Response
     class Base < SimpleDelegator
       attr_reader :status

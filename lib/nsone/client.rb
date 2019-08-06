@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require "ns1/api"
-require "ns1/transport/net_http"
-require "ns1/error"
+require "nsone/api"
+require "nsone/transport/net_http"
+require "nsone/error"
 
-module NS1
+module NSOne
   class Client
 
-    include NS1::API
+    include NSOne::API
 
     BASE_URL = "https://api.nsone.net"
 
@@ -21,10 +21,10 @@ module NS1
 
     def perform_request(method, path, body = nil)
       body = JSON.dump(body) if body.is_a? Hash
-      log("[NS1] > #{method} #{path}")
-      log("[NS1] > #{body}") if body
+      log("[NSOne] > #{method} #{path}")
+      log("[NSOne] > #{body}") if body
       response = transport.request(method, path, body)
-      log("[NS1] < #{response.inspect}")
+      log("[NSOne] < #{response.inspect}")
       response
     end
 
@@ -33,7 +33,7 @@ module NS1
     end
 
     def transport
-      @transport ||= NS1::Transport::NetHttp.new(@base_url, @api_key)
+      @transport ||= NSOne::Transport::NetHttp.new(@base_url, @api_key)
     end
 
     def blank?(object)

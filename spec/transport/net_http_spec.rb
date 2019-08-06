@@ -1,9 +1,9 @@
 require "spec_helper"
 
-RSpec.describe NS1::Transport::NetHttp do
+RSpec.describe NSOne::Transport::NetHttp do
   let(:key) { "s3cr3tk3y" }
-  let(:base_url) { NS1::Client::BASE_URL }
-  let(:transport) { NS1::Transport::NetHttp.new(base_url, key) }
+  let(:base_url) { NSOne::Client::BASE_URL }
+  let(:transport) { NSOne::Transport::NetHttp.new(base_url, key) }
 
   describe "#request" do
     it "sends an authentication header" do
@@ -30,24 +30,24 @@ RSpec.describe NS1::Transport::NetHttp do
 
       expect {
         transport.request("GET", "/example")
-      }.to raise_error NS1::Transport::ResponseParseError
+      }.to raise_error NSOne::Transport::ResponseParseError
     end
 
-    it "returns NS1::Response::Success on success response" do
+    it "returns NSOne::Response::Success on success response" do
       stub_api(:get, "/example", status: 200)
 
       response = transport.request("GET", "/example")
 
-      expect(response).to be_a NS1::Response::Success
+      expect(response).to be_a NSOne::Response::Success
       expect(response.status).to eq 200
     end
 
-    it "returns NS1::Response::Error on non-200 response" do
+    it "returns NSOne::Response::Error on non-200 response" do
       stub_api(:get, "/example", status: 400)
 
       response = transport.request("GET", "/example")
 
-      expect(response).to be_a NS1::Response::Error
+      expect(response).to be_a NSOne::Response::Error
       expect(response.status).to eq 400
     end
   end

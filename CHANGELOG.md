@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 0.3.4 - 2019-08-06
+- Fix file nameing
+
 ## 0.3.3 - 2019-08-06
 - Added jobs and job API calls for NS1 monitoring jobs
 - Added account and account_overage calls

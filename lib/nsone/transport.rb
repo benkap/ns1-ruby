@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module NS1
+module NSOne
   module Transport
     class Error < StandardError; end
     class ResponseParseError < Error; end

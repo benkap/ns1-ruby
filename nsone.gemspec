@@ -1,11 +1,10 @@
-
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "ns1/version"
+require "nsone/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "ns-1"
-  spec.version       = NS1::VERSION
+  spec.name          = "nsone"
+  spec.version       = NSOne::VERSION
   spec.authors       = ["Esteban Pastorino"]
   spec.email         = ["ejpastorino@gmail.com"]
   spec.license       = "MIT"

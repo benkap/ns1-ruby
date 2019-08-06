@@ -1,8 +1,8 @@
 require "spec_helper"
 
-RSpec.describe NS1::API::Zones do
+RSpec.describe NSOne::API::Zones do
   let(:api_key) { "s3cr3tk3y" }
-  let(:client) { NS1::Client.new(api_key) }
+  let(:client) { NSOne::Client.new(api_key) }
 
   describe "#zones" do
     it "requests GET /v1/zones" do
@@ -18,7 +18,7 @@ RSpec.describe NS1::API::Zones do
     it "raises an error on nil zone" do
       expect {
         client.zone(nil)
-      }.to raise_error NS1::MissingParameter
+      }.to raise_error NSOne::MissingParameter
     end
 
     it "requests GET /v1/zones" do
@@ -35,7 +35,7 @@ RSpec.describe NS1::API::Zones do
     it "raises an error when no zone" do
       expect {
         client.create_zone(nil, nx_ttl: 600)
-      }.to raise_error NS1::MissingParameter
+      }.to raise_error NSOne::MissingParameter
     end
 
     it "requests PUT /v1/zones/:zone" do

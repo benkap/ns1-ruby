@@ -1,14 +1,14 @@
 require "spec_helper"
 
-RSpec.describe NS1::API::Records do
+RSpec.describe NSOne::API::Records do
   let(:api_key) { "s3cr3tk3y" }
-  let(:client) { NS1::Client.new(api_key) }
+  let(:client) { NSOne::Client.new(api_key) }
 
   describe "#record" do
     it "raises an error on nil zone" do
       expect {
         client.record(nil, nil, nil)
-      }.to raise_error NS1::MissingParameter
+      }.to raise_error NSOne::MissingParameter
     end
 
     it "requests GET /v1/zones/:zone/:domain/:type" do
@@ -25,13 +25,13 @@ RSpec.describe NS1::API::Records do
     it "raises an error when no zone, record, or type" do
       expect {
         client.create_record("", "", "", { ttl: 60 })
-      }.to raise_error NS1::MissingParameter
+      }.to raise_error NSOne::MissingParameter
     end
 
     it "raises an error when no answers" do
       expect {
         client.create_record("example.com", "www.example.com", "A", { ttl: 60 })
-      }.to raise_error NS1::MissingParameter
+      }.to raise_error NSOne::MissingParameter
     end
 
     it "requests PUT /v1/zones/:zone/:domain/:type" do

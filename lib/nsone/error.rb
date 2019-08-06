@@ -1,4 +1,4 @@
-module NS1
+module NSOne
   class Error < StandardError; end
   class MissingParameter < Error; end
 end

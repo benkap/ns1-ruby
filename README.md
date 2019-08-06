@@ -1,4 +1,4 @@
-# NS1
+# NS-1
 
 [NS1](https://ns1.com/) API Client
 
@@ -26,7 +26,7 @@ Or install it yourself as:
 
 ```ruby
 # Instantiate a client
-client = NS1::Client.new("your api key")
+client = NSOne::Client.new("your api key")
 
 # ZONES
 

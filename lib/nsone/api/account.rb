@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-module NS1
+module NSOne
   module API
     module Account
 
       #
       # Returns the basic contact details associated with your account
       #
-      # @return [NS1::Response]
+      # @return [NSOne::Response]
       #
       def account()
         perform_request(HTTP_GET, "/v1/account/settings")
@@ -16,7 +16,7 @@ module NS1
       #
       # Returns toggles and thresholds used when sending overage warning
       #
-      # @return [NS1::Response]
+      # @return [NSOne::Response]
       #
       def account_overage()
         perform_request(HTTP_GET, "/v1/account/usagewarnings")

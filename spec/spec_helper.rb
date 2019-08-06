@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "ns1"
+require "nsone"
 require "webmock/rspec"
 
 Dir[File.expand_path("../support/**/*.rb", __FILE__)].each { |f| puts f; require f }

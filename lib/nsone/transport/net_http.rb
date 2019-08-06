@@ -4,10 +4,10 @@ require "net/http"
 require "openssl"
 require "json"
 require "uri"
-require "ns1/transport"
-require "ns1/response"
+require "nsone/transport"
+require "nsone/response"
 
-module NS1
+module NSOne
   module Transport
     class NetHttp
       def initialize(base_url, api_key)
@@ -29,12 +29,12 @@ module NS1
         body = JSON.parse(response.body)
         case response
         when Net::HTTPOK
-          NS1::Response::Success.new(body, response.code.to_i)
+          NSOne::Response::Success.new(body, response.code.to_i)
         else
-          NS1::Response::Error.new(body, response.code.to_i)
+          NSOne::Response::Error.new(body, response.code.to_i)
         end
       rescue JSON::ParserError
-        raise NS1::Transport::ResponseParseError
+        raise NSOne::Transport::ResponseParseError
       end
 
       def opts(uri)

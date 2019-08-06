@@ -1,6 +1,6 @@
-require "ns1/response/base"
+require "nsone/response/base"
 
-module NS1
+module NSOne
   module Response
     class Success < Base
     end

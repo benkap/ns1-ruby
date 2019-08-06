@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module NS1
+module NSOne
   module API
     module Records
 
@@ -12,12 +12,12 @@ module NS1
       # @param [String] domain record name
       # @param [String] type record type (A, CNAME etc)
       #
-      # @return [NS1::Response]
+      # @return [NSOne::Response]
       #
       def record(zone, domain, type)
-        raise NS1::MissingParameter, "zone cannot be blank" if blank?(zone)
-        raise NS1::MissingParameter, "domain cannot be blank" if blank?(domain)
-        raise NS1::MissingParameter, "type cannot be blank" if blank?(type)
+        raise NSOne::MissingParameter, "zone cannot be blank" if blank?(zone)
+        raise NSOne::MissingParameter, "domain cannot be blank" if blank?(domain)
+        raise NSOne::MissingParameter, "type cannot be blank" if blank?(type)
         normalize_names!(zone, domain)
         perform_request(HTTP_GET, "/v1/zones/#{zone}/#{domain}/#{type}")
       end
@@ -47,9 +47,9 @@ module NS1
       #
       #   Default: `true`
       #
-      # @return [NS1::Response]
+      # @return [NSOne::Response]
       #
-      # @example Request body with answers and filter chain arrays. @see [NS1 API](https://ns1.com/api)
+      # @example Request body with answers and filter chain arrays. @see [NSOne API](https://ns1.com/api)
       #    {
       #      "zone":"example.com",
       #      "domain":"georegion.example.com",
@@ -93,9 +93,9 @@ module NS1
       #
       #
       def create_record(zone, domain, type, params = {})
-        raise NS1::MissingParameter, "zone cannot be blank" if blank?(zone)
-        raise NS1::MissingParameter, "domain cannot be blank" if blank?(domain)
-        raise NS1::MissingParameter, "type cannot be blank" if blank?(type)
+        raise NSOne::MissingParameter, "zone cannot be blank" if blank?(zone)
+        raise NSOne::MissingParameter, "domain cannot be blank" if blank?(domain)
+        raise NSOne::MissingParameter, "type cannot be blank" if blank?(type)
         validate_required!(params, :answers)
         normalize_names!(zone, domain)
         params = params.merge(zone: zone, domain: domain, type: type)
@@ -103,14 +103,14 @@ module NS1
       end
 
       #
-      # Modify an existing record. See {NS1::API::Records#create_record} for available options.
+      # Modify an existing record. See {NSOne::API::Records#create_record} for available options.
       #
-      # @return [NS1::Response]
+      # @return [NSOne::Response]
       #
       def modify_record(zone, domain, type, params)
-        raise NS1::MissingParameter, "zone cannot be blank" if blank?(zone)
-        raise NS1::MissingParameter, "domain cannot be blank" if blank?(domain)
-        raise NS1::MissingParameter, "type cannot be blank" if blank?(type)
+        raise NSOne::MissingParameter, "zone cannot be blank" if blank?(zone)
+        raise NSOne::MissingParameter, "domain cannot be blank" if blank?(domain)
+        raise NSOne::MissingParameter, "type cannot be blank" if blank?(type)
         normalize_names!(zone, domain)
         perform_request(HTTP_POST, "/v1/zones/#{zone}/#{domain}/#{type}", params)
       end
@@ -122,12 +122,12 @@ module NS1
       # @param [String] domain record name
       # @param [String] type record type (A, CNAME etc)
       #
-      # @return [NS1::Response]
+      # @return [NSOne::Response]
       #
       def delete_record(zone, domain, type)
-        raise NS1::MissingParameter, "zone cannot be blank" if blank?(zone)
-        raise NS1::MissingParameter, "domain cannot be blank" if blank?(domain)
-        raise NS1::MissingParameter, "type cannot be blank" if blank?(type)
+        raise NSOne::MissingParameter, "zone cannot be blank" if blank?(zone)
+        raise NSOne::MissingParameter, "domain cannot be blank" if blank?(domain)
+        raise NSOne::MissingParameter, "type cannot be blank" if blank?(type)
         normalize_names!(zone, domain)
         perform_request(HTTP_DELETE, "/v1/zones/#{zone}/#{domain}/#{type}")
       end
