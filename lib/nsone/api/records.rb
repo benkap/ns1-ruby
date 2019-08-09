@@ -16,7 +16,6 @@ module NSOne
       #
       def record(zone, domain, type)
         raise NSOne::MissingParameter, "zone cannot be blank" if blank?(zone)
-        raise NSOne::MissingParameter, "domain cannot be blank" if blank?(domain)
         raise NSOne::MissingParameter, "type cannot be blank" if blank?(type)
         normalize_names!(zone, domain)
         perform_request(HTTP_GET, "/v1/zones/#{zone}/#{domain}/#{type}")

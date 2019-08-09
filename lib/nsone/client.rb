@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "nsone/api"
 require "nsone/transport/net_http"
 require "nsone/error"
@@ -51,6 +49,7 @@ module NSOne
     # Helper to support `domain` name with or without the zone name.
     # e.g. zone: example.com domain: www will generate domain: www.example.com
     def normalize_names!(zone, domain = "")
+      domain.replace(zone) if domain.empty?
       no_dot!(zone, domain)
       domain << ".#{zone}" unless domain.empty? || domain.include?(zone)
     end
@@ -58,7 +57,6 @@ module NSOne
     # Removes trailing dot from all Strings given
     def no_dot!(*array)
       array.map {|a| a.chop! if a[/\.$/] != nil}
-      array
     end
 
   end
