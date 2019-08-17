@@ -11,8 +11,8 @@ RSpec.describe NSOne::API::Records do
       }.to raise_error NSOne::MissingParameter
     end
 
-    it "requests GET /v1/zones/:zone/:domain/:type" do
-      request = stub_api(:get, "/v1/zones/example.com/www.example.com/A")
+    it "requests GET /zones/:zone/:domain/:type" do
+      request = stub_api(:get, "/zones/example.com/www.example.com/A")
 
       response = client.record("example.com", "www.example.com", "A")
 
@@ -34,9 +34,9 @@ RSpec.describe NSOne::API::Records do
       }.to raise_error NSOne::MissingParameter
     end
 
-    it "requests PUT /v1/zones/:zone/:domain/:type" do
+    it "requests PUT /zones/:zone/:domain/:type" do
       expected_body = { answers: [],  zone: "example.com", domain: "www.example.com", type: "A" }
-      request = stub_api(:put, "/v1/zones/example.com/www.example.com/A")
+      request = stub_api(:put, "/zones/example.com/www.example.com/A")
                   .with(body: JSON.dump(expected_body))
 
       response = client.create_record("example.com", "www.example.com", "A", { answers: [] })
@@ -47,9 +47,9 @@ RSpec.describe NSOne::API::Records do
   end
 
   describe "#modify_record" do
-    it "requests POST /v1/zones/:zone/:domain/:type" do
+    it "requests POST /zones/:zone/:domain/:type" do
       expected_body = { use_client_subnet: false }
-      request = stub_api(:post, "/v1/zones/example.com/www.example.com/CNAME")
+      request = stub_api(:post, "/zones/example.com/www.example.com/CNAME")
                   .with(body: JSON.dump(expected_body))
 
       response = client.modify_record("example.com", "www.example.com", "CNAME", { use_client_subnet: false } )
@@ -60,8 +60,8 @@ RSpec.describe NSOne::API::Records do
   end
 
   describe "#delete_record" do
-    it "requests DELETE /v1/zones/:zone/:domain/:type" do
-      request = stub_api(:delete, "/v1/zones/example.com/www.example.com/CNAME")
+    it "requests DELETE /zones/:zone/:domain/:type" do
+      request = stub_api(:delete, "/zones/example.com/www.example.com/CNAME")
 
       response = client.delete_record("example.com", "www.example.com", "CNAME")
 

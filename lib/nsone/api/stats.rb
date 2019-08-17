@@ -10,7 +10,7 @@ module NSOne
       # @return [NSOne::Response]
       #
       def qps()
-        perform_request(HTTP_GET, "/v1/stats/qps")
+        perform_request(HTTP_GET, "/stats/qps")
       end
 
       #
@@ -23,7 +23,7 @@ module NSOne
       def zone_qps(zone)
         raise NSOne::MissingParameter, "zone cannot be blank" if blank?(zone)
         normalize_names!(zone)
-        perform_request(HTTP_GET, "/v1/stats/qps/#{zone}")
+        perform_request(HTTP_GET, "/stats/qps/#{zone}")
       end
 
       #
@@ -40,7 +40,7 @@ module NSOne
         raise NSOne::MissingParameter, "domain cannot be blank" if blank?(domain)
         raise NSOne::MissingParameter, "type cannot be blank" if blank?(type)
         normalize_names!(zone, domain)
-        perform_request(HTTP_GET, "/v1/stats/qps/#{zone}/#{domain}/#{type}")
+        perform_request(HTTP_GET, "/stats/qps/#{zone}/#{domain}/#{type}")
       end
 
       #
@@ -63,7 +63,7 @@ module NSOne
       # @return [NSOne::Response]
       #
       def usage(params = {})
-        perform_request(HTTP_GET, "/v1/stats/usage", params)
+        perform_request(HTTP_GET, "/stats/usage", params)
       end
 
       #
@@ -86,7 +86,7 @@ module NSOne
       # @return [NSOne::Response]
       #
       def network_usage(params = {})
-        perform_request(HTTP_GET, "/v1/stats/network/usage", params)
+        perform_request(HTTP_GET, "/stats/network/usage", params)
       end
 
       #
@@ -110,7 +110,7 @@ module NSOne
       # @return [NSOne::Response]
       #
       def region_usage(params = {})
-        perform_request(HTTP_GET, "/v1/stats/region/usage", params)
+        perform_request(HTTP_GET, "/stats/region/usage", params)
       end
 
       #
@@ -136,7 +136,7 @@ module NSOne
       def zone_usage(zone, params = {})
         raise NSOne::MissingParameter, "zone cannot be blank" if blank?(zone)
         normalize_names!(zone)
-        perform_request(HTTP_GET, "/v1/stats/usage/#{zone}", params)
+        perform_request(HTTP_GET, "/stats/usage/#{zone}", params)
       end
 
       #
@@ -166,7 +166,7 @@ module NSOne
         raise NSOne::MissingParameter, "domain cannot be blank" if blank?(domain)
         raise NSOne::MissingParameter, "type cannot be blank" if blank?(type)
         normalize_names!(zone, domain)
-        perform_request(HTTP_GET, "/v1/stats/usage/#{zone}/#{domain}/#{type}", params)
+        perform_request(HTTP_GET, "/stats/usage/#{zone}/#{domain}/#{type}", params)
       end
 
     end

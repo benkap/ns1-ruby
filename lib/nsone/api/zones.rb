@@ -10,7 +10,7 @@ module NSOne
       # @return [NSOne::Response]
       #
       def zones
-        perform_request(HTTP_GET, "/v1/zones")
+        perform_request(HTTP_GET, "/zones")
       end
 
       #
@@ -22,7 +22,7 @@ module NSOne
       #
       def zone(zone)
         raise NSOne::MissingParameter, "zone cannot be blank" if blank?(zone)
-        perform_request(HTTP_GET, "/v1/zones/#{zone}")
+        perform_request(HTTP_GET, "/zones/#{zone}")
       end
 
       #
@@ -39,7 +39,7 @@ module NSOne
       def create_zone(zone, params = {})
         raise NSOne::MissingParameter, "zone cannot be blank" if blank?(zone)
         params = params.merge(zone: zone)
-        perform_request(HTTP_PUT, "/v1/zones/#{zone}", params)
+        perform_request(HTTP_PUT, "/zones/#{zone}", params)
       end
 
       #
@@ -55,7 +55,7 @@ module NSOne
       def modify_zone(zone, params = {})
         raise NSOne::MissingParameter, "zone cannot be blank" if blank?(zone)
         raise NSOne::MissingParameter, "params hash must contain valid zone settings" if !params.is_a?(Hash) || params.empty?
-        perform_request(HTTP_POST, "/v1/zones/#{zone}", params)
+        perform_request(HTTP_POST, "/zones/#{zone}", params)
       end
 
       #
@@ -67,7 +67,7 @@ module NSOne
       #
       def delete_zone(zone)
         raise NSOne::MissingParameter, "zone cannot be blank" if blank?(zone)
-        perform_request(HTTP_DELETE, "/v1/zones/#{zone}")
+        perform_request(HTTP_DELETE, "/zones/#{zone}")
       end
 
       #
@@ -86,7 +86,7 @@ module NSOne
       def search(string, params = {})
         raise NSOne::MissingParameter, "search string cannot be blank" if blank?(string)
         params = params.merge(q: string)
-        perform_request(HTTP_GET, "/v1/search", params)
+        perform_request(HTTP_GET, "/search", params)
       end
 
     end

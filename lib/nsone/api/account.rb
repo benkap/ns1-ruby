@@ -10,7 +10,7 @@ module NSOne
       # @return [NSOne::Response]
       #
       def account()
-        perform_request(HTTP_GET, "/v1/account/settings")
+        perform_request(HTTP_GET, "/account/settings")
       end
 
       #
@@ -19,7 +19,7 @@ module NSOne
       # @return [NSOne::Response]
       #
       def account_overage()
-        perform_request(HTTP_GET, "/v1/account/usagewarnings")
+        perform_request(HTTP_GET, "/account/usagewarnings")
       end
 
     end

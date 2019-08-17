@@ -5,8 +5,8 @@ RSpec.describe NSOne::API::Zones do
   let(:client) { NSOne::Client.new(api_key) }
 
   describe "#zones" do
-    it "requests GET /v1/zones" do
-      request = stub_api(:get, "/v1/zones")
+    it "requests GET /zones" do
+      request = stub_api(:get, "/zones")
 
       client.zones
 
@@ -21,8 +21,8 @@ RSpec.describe NSOne::API::Zones do
       }.to raise_error NSOne::MissingParameter
     end
 
-    it "requests GET /v1/zones" do
-      request = stub_api(:get, "/v1/zones/example.com")
+    it "requests GET /zones" do
+      request = stub_api(:get, "/zones/example.com")
 
       response = client.zone("example.com")
 
@@ -38,9 +38,9 @@ RSpec.describe NSOne::API::Zones do
       }.to raise_error NSOne::MissingParameter
     end
 
-    it "requests PUT /v1/zones/:zone" do
+    it "requests PUT /zones/:zone" do
       expected_body = { zone: "example.com" }
-      request = stub_api(:put, "/v1/zones/example.com")
+      request = stub_api(:put, "/zones/example.com")
                   .with(body: JSON.dump(expected_body))
 
       response = client.create_zone("example.com")
@@ -51,9 +51,9 @@ RSpec.describe NSOne::API::Zones do
   end
 
   describe "#modify_zone" do
-    it "requests POST /v1/zones/:zone" do
+    it "requests POST /zones/:zone" do
       expected_body = { ttl: 600 }
-      request = stub_api(:post, "/v1/zones/example.com")
+      request = stub_api(:post, "/zones/example.com")
                   .with(body: JSON.dump(expected_body))
 
       response = client.modify_zone("example.com", ttl: 600)
@@ -64,8 +64,8 @@ RSpec.describe NSOne::API::Zones do
   end
 
   describe "#delete_zone" do
-    it "requests DELETE /v1/zones/:zone" do
-      request = stub_api(:delete, "/v1/zones/example.com")
+    it "requests DELETE /zones/:zone" do
+      request = stub_api(:delete, "/zones/example.com")
 
       response = client.delete_zone("example.com")
 

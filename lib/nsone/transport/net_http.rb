@@ -10,13 +10,14 @@ require "nsone/response"
 module NSOne
   module Transport
     class NetHttp
-      def initialize(base_url, api_key)
+      def initialize(base_url, api_version, api_key)
         @base_url = base_url
+        @api_version = api_version
         @api_key = api_key
       end
 
       def request(method, path, body = nil)
-        uri = URI.join(@base_url, path)
+        uri = URI.join(@base_url, "#{@api_version}#{path}")
         Net::HTTP.start(uri.host, uri.port, opts(uri)) do |http|
           response = http.send_request(method, uri, body, headers(body))
           process_response(response)
@@ -33,8 +34,8 @@ module NSOne
         else
           NSOne::Response::Error.new(body, response.code.to_i)
         end
-      rescue JSON::ParserError
-        raise NSOne::Transport::ResponseParseError
+      rescue JSON::ParserError => e
+        raise NSOne::Transport::ResponseParseError, "#{response.code_type} #{response.code} error: #{e}"
       end
 
       def opts(uri)

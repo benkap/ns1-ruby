@@ -10,7 +10,7 @@ module NSOne
       # @return [NSOne::Response]
       #
       def jobs()
-        perform_request(HTTP_GET, "/v1/monitoring/jobs")
+        perform_request(HTTP_GET, "/monitoring/jobs")
       end
 
       #
@@ -22,7 +22,7 @@ module NSOne
       #
       def job(job_id)
         raise NSOne::MissingParameter, "job_id cannot be blank" if blank?(job_id)
-        perform_request(HTTP_GET, "/v1/monitoring/jobs/#{job_id}")
+        perform_request(HTTP_GET, "/monitoring/jobs/#{job_id}")
       end
 
     end

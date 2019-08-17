@@ -15,7 +15,8 @@ module NSOne
         NSOne::API::Records,
         NSOne::API::Account,
         NSOne::API::Stats,
-        NSOne::API::Jobs
+        NSOne::API::Jobs,
+        NSOne::API::Feeds
     end
 
   end

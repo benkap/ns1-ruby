@@ -18,7 +18,7 @@ module NSOne
         raise NSOne::MissingParameter, "zone cannot be blank" if blank?(zone)
         raise NSOne::MissingParameter, "type cannot be blank" if blank?(type)
         normalize_names!(zone, domain)
-        perform_request(HTTP_GET, "/v1/zones/#{zone}/#{domain}/#{type}")
+        perform_request(HTTP_GET, "/zones/#{zone}/#{domain}/#{type}")
       end
 
       #
@@ -98,7 +98,7 @@ module NSOne
         validate_required!(params, :answers)
         normalize_names!(zone, domain)
         params = params.merge(zone: zone, domain: domain, type: type)
-        perform_request(HTTP_PUT, "/v1/zones/#{zone}/#{domain}/#{type}", params)
+        perform_request(HTTP_PUT, "/zones/#{zone}/#{domain}/#{type}", params)
       end
 
       #
@@ -111,7 +111,7 @@ module NSOne
         raise NSOne::MissingParameter, "domain cannot be blank" if blank?(domain)
         raise NSOne::MissingParameter, "type cannot be blank" if blank?(type)
         normalize_names!(zone, domain)
-        perform_request(HTTP_POST, "/v1/zones/#{zone}/#{domain}/#{type}", params)
+        perform_request(HTTP_POST, "/zones/#{zone}/#{domain}/#{type}", params)
       end
 
       #
@@ -128,7 +128,7 @@ module NSOne
         raise NSOne::MissingParameter, "domain cannot be blank" if blank?(domain)
         raise NSOne::MissingParameter, "type cannot be blank" if blank?(type)
         normalize_names!(zone, domain)
-        perform_request(HTTP_DELETE, "/v1/zones/#{zone}/#{domain}/#{type}")
+        perform_request(HTTP_DELETE, "/zones/#{zone}/#{domain}/#{type}")
       end
 
     end

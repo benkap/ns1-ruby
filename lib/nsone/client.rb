@@ -9,9 +9,10 @@ module NSOne
 
     BASE_URL = "https://api.nsone.net"
 
-    def initialize(api_key, base_url: BASE_URL, logger: nil)
+    def initialize(api_key, api_version: "v1", base_url: BASE_URL, logger: nil)
       @api_key = api_key
       @base_url = base_url
+      @api_version = api_version
       @logger = logger
     end
 
@@ -31,7 +32,7 @@ module NSOne
     end
 
     def transport
-      @transport ||= NSOne::Transport::NetHttp.new(@base_url, @api_key)
+      @transport ||= NSOne::Transport::NetHttp.new(@base_url, @api_version, @api_key)
     end
 
     def blank?(object)
