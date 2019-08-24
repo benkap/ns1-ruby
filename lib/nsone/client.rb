@@ -32,7 +32,10 @@ module NSOne
     end
 
     def transport
-      @transport ||= NSOne::Transport::NetHttp.new(@base_url, @api_version, @api_key)
+      begin
+        @transport ||= NSOne::Transport::NetHttp.new(@base_url, @api_version, @api_key)
+      rescue NSOne::Transport::RateLimitExceeded
+      end
     end
 
     def blank?(object)

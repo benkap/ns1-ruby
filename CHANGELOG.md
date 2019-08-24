@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 0.4.0 - 2019-08-17
+ - Added NSOne::Transport::RateLimitExceeded exception and get_rates method to add to the NSOne::Response::Base class the rate limit headers to help with exponential backoff
+ - Added billataglance and plan methods for account API
+ - Added Feeds APIs
+ - Seperated API version string from static paths to allow easy to change, versions in the future.
+
 ## 0.3.4 - 2019-08-06
 - change module name
 

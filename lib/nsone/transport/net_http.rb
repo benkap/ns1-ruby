@@ -10,6 +10,8 @@ require "nsone/response"
 module NSOne
   module Transport
     class NetHttp
+
+
       def initialize(base_url, api_version, api_key)
         @base_url = base_url
         @api_version = api_version
@@ -20,22 +22,34 @@ module NSOne
         uri = URI.join(@base_url, "#{@api_version}#{path}")
         Net::HTTP.start(uri.host, uri.port, opts(uri)) do |http|
           response = http.send_request(method, uri, body, headers(body))
-          process_response(response)
+          process_response(response, get_rates(response))
         end
       end
 
       private
 
-      def process_response(response)
+      def process_response(response, rates = {})
         body = JSON.parse(response.body)
         case response
+        when Net::HTTPTooManyRequests
+          raise NSOne::Transport::RateLimitExceeded, "#{response}, #{body}"
         when Net::HTTPOK
-          NSOne::Response::Success.new(body, response.code.to_i)
+          NSOne::Response::Success.new(body, response.code.to_i, rates)
         else
-          NSOne::Response::Error.new(body, response.code.to_i)
+          NSOne::Response::Error.new(body, response.code.to_i, rates)
         end
       rescue JSON::ParserError => e
         raise NSOne::Transport::ResponseParseError, "#{response.code_type} #{response.code} error: #{e}"
+      end
+
+      def get_rates(response)
+        Hash.new.tap do | h |
+          h[:by] = response["x-ratelimit-by"] if response["x-ratelimit-by"]
+          h[:remaining] = response["x-ratelimit-remaining"] if response["x-ratelimit-remaining"]
+          h[:limit] = response["x-ratelimit-limit"].to_i if response["x-ratelimit-limit"]
+          h[:period] = response["x-ratelimit-period"].to_i if response["x-ratelimit-period"]
+          h[:rate] = (h[:limit] / h[:period]).to_f if h[:limit] && h[:period]
+        end
       end
 
       def opts(uri)
@@ -55,6 +69,7 @@ module NSOne
       def default_headers
         { "X-NSONE-Key" => @api_key }
       end
+      
     end
   end
 end

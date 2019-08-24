@@ -22,6 +22,14 @@ module NSOne
         perform_request(HTTP_GET, "/account/usagewarnings")
       end
 
+      def plan
+        perform_request(HTTP_GET, "/account/plan")
+      end
+
+      def billataglance
+        perform_request(HTTP_GET, "/account/billataglance")
+      end
+
     end
   end
 end
