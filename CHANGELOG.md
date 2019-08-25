@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 0.4.1 - 2019-08-26
+ - Added network call for managed/private/dedicated networks lists
+
 ## 0.4.0 - 2019-08-17
  - Added NSOne::Transport::RateLimitExceeded exception and get_rates method to add to the NSOne::Response::Base class the rate limit headers to help with exponential backoff
  - Added billataglance and plan methods for account API
