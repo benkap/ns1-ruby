@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 0.4.2 - 2019-08-27
+ - Fixed when GET method is used NS1 API need the params as query params and not in the request payload.
+
 ## 0.4.1 - 2019-08-26
  - Added network call for managed/private/dedicated networks lists
 

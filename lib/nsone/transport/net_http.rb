@@ -19,7 +19,12 @@ module NSOne
       end
 
       def request(method, path, body = nil)
-        uri = URI.join(@base_url, "#{@api_version}#{path}")
+        if method == "GET" && body
+          query = URI.encode_www_form(JSON.parse(body).to_a)
+          uri = URI.join(@base_url, "#{@api_version}#{path}?#{query}")
+        else
+          uri = URI.join(@base_url, "#{@api_version}#{path}")
+        end
         Net::HTTP.start(uri.host, uri.port, opts(uri)) do |http|
           response = http.send_request(method, uri, body, headers(body))
           process_response(response, get_rates(response))
@@ -69,7 +74,7 @@ module NSOne
       def default_headers
         { "X-NSONE-Key" => @api_key }
       end
-      
+
     end
   end
 end
